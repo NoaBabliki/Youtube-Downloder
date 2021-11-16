@@ -7,6 +7,12 @@ import re
 
 
 def download_first_30_seconds(urls_file, destination_dir):
+    """
+    downloads first minute of a youtube video
+    :param urls_file: path to the txt file with youtube urls
+    :param destination_dir: path to directory for downloaded video
+    :return: none
+    """
     file = open(urls_file, 'r')
     for line in file:
 
@@ -28,12 +34,24 @@ def download_first_30_seconds(urls_file, destination_dir):
 
 
 def mp4_to_mp3(mp4, mp3):
+    """
+    convert mp4 to mp3
+    :param mp4: path to mp4 file
+    :param mp3: path to mp3 file
+    :return: none
+    """
     mp4_without_frames = AudioFileClip(mp4)
     mp4_without_frames.write_audiofile(mp3)
     mp4_without_frames.close()
 
 
 def convert_mp4_to_mp3(source_dir, destination_dir):
+    """
+    convert all mp4 files in the source directory to mp3 files in the destination directory
+    :param source_dir: path to source directory
+    :param destination_dir: path to destination directory
+    :return: none
+    """
     for filename in os.listdir(source_dir):
         if filename.endswith('.mp4'):
             mp4_to_mp3(source_dir + '/' + filename, destination_dir + '/' + filename.replace("mp4", "mp3"))
